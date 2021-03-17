@@ -1112,46 +1112,46 @@ class Toolbox extends Component<Props, State> {
         const overflowMenuAdditionalButtons = [];
         const mainMenuAdditionalButtons = [];
 
-        if (this._showDesktopSharingButton()) {
-            buttons.has('desktop')
-                ? mainMenuAdditionalButtons.push(<ToolbarButton
-                    accessibilityLabel = { t('toolbar.accessibilityLabel.shareYourScreen') }
-                    disabled = { !_desktopSharingEnabled }
-                    icon = { IconShareDesktop }
-                    key = 'desktop'
-                    onClick = { this._onToolbarToggleScreenshare }
-                    toggled = { _screensharing }
-                    tooltip = { t(_desktopSharingEnabled
-                        ? 'dialog.shareYourScreen' : _desktopSharingDisabledTooltipKey) } />)
-                : overflowMenuAdditionalButtons.push(<OverflowMenuItem
-                    accessibilityLabel = { t('toolbar.accessibilityLabel.shareYourScreen') }
-                    icon = { IconShareDesktop }
-                    iconId = 'share-desktop'
-                    key = 'desktop'
-                    onClick = { this._onToolbarToggleScreenshare }
-                    text = { t(`toolbar.${_screensharing ? 'stopScreenSharing' : 'startScreenSharing'}`) } />);
-        }
+        // if (this._showDesktopSharingButton()) {
+        //     buttons.has('desktop')
+        //         ? mainMenuAdditionalButtons.push(<ToolbarButton
+        //             accessibilityLabel = { t('toolbar.accessibilityLabel.shareYourScreen') }
+        //             disabled = { !_desktopSharingEnabled }
+        //             icon = { IconShareDesktop }
+        //             key = 'desktop'
+        //             onClick = { this._onToolbarToggleScreenshare }
+        //             toggled = { _screensharing }
+        //             tooltip = { t(_desktopSharingEnabled
+        //                 ? 'dialog.shareYourScreen' : _desktopSharingDisabledTooltipKey) } />)
+        //         : overflowMenuAdditionalButtons.push(<OverflowMenuItem
+        //             accessibilityLabel = { t('toolbar.accessibilityLabel.shareYourScreen') }
+        //             icon = { IconShareDesktop }
+        //             iconId = 'share-desktop'
+        //             key = 'desktop'
+        //             onClick = { this._onToolbarToggleScreenshare }
+        //             text = { t(`toolbar.${_screensharing ? 'stopScreenSharing' : 'startScreenSharing'}`) } />);
+        // }
 
-        if (this._shouldShowButton('chat')) {
-            buttons.has('chat')
-                ? mainMenuAdditionalButtons.push(<div
-                    className = 'toolbar-button-with-badge'
-                    key = 'chatcontainer'>
-                    <ToolbarButton
-                        accessibilityLabel = { t('toolbar.accessibilityLabel.chat') }
-                        icon = { IconChat }
-                        key = 'chat'
-                        onClick = { this._onToolbarToggleChat }
-                        toggled = { _chatOpen }
-                        tooltip = { t('toolbar.chat') } />
-                    <ChatCounter />
-                </div>) : overflowMenuAdditionalButtons.push(<OverflowMenuItem
-                    accessibilityLabel = { t('toolbar.accessibilityLabel.chat') }
-                    icon = { IconChat }
-                    key = 'chat'
-                    onClick = { this._onToolbarToggleChat }
-                    text = { t(`toolbar.${_chatOpen ? 'closeChat' : 'openChat'}`) } />);
-        }
+        // if (this._shouldShowButton('chat')) {
+        //     buttons.has('chat')
+        //         ? mainMenuAdditionalButtons.push(<div
+        //             className = 'toolbar-button-with-badge'
+        //             key = 'chatcontainer'>
+        //             <ToolbarButton
+        //                 accessibilityLabel = { t('toolbar.accessibilityLabel.chat') }
+        //                 icon = { IconChat }
+        //                 key = 'chat'
+        //                 onClick = { this._onToolbarToggleChat }
+        //                 toggled = { _chatOpen }
+        //                 tooltip = { t('toolbar.chat') } />
+        //             <ChatCounter />
+        //         </div>) : overflowMenuAdditionalButtons.push(<OverflowMenuItem
+        //             accessibilityLabel = { t('toolbar.accessibilityLabel.chat') }
+        //             icon = { IconChat }
+        //             key = 'chat'
+        //             onClick = { this._onToolbarToggleChat }
+        //             text = { t(`toolbar.${_chatOpen ? 'closeChat' : 'openChat'}`) } />);
+        // }
 
         if (this._shouldShowButton('raisehand')) {
             buttons.has('raisehand')
