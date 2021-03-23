@@ -74,6 +74,11 @@
         "title": "Chat",
         "you": "you"
     },
+    "changeLanguage": {
+        "title": "Change Transcription/Translation language",
+        "transcription": "Change transcription language",
+        "translation": "Change translation language"
+    },
     "chromeExtensionBanner": {
         "installExtensionText": "Install the extension for Google Calendar and Office 365 integration",
         "buttonText": "Install Chrome Extension",
@@ -694,6 +699,7 @@
             "callQuality": "Manage video quality",
             "cc": "Toggle subtitles",
             "chat": "Toggle chat window",
+            "changeLanguage": "Change Transcription/Translation language",
             "document": "Toggle shared document",
             "download": "Download our apps",
             "embedMeeting": "Embed meeting",
@@ -740,6 +746,7 @@
         "callQuality": "Manage video quality",
         "chat": "Open / Close chat",
         "closeChat": "Close chat",
+        "changeLanguage": "Change Transcription/Translation language",
         "documentClose": "Close shared document",
         "documentOpen": "Open shared document",
         "download": "Download our apps",
@@ -874,7 +881,7 @@
         "getHelp": "Get help",
         "go": "GO",
         "goSmall": "GO",
-        "headerTitle": "Jitsi Meet",
+        "headerTitle": "Jitsi Z Z Z Meet",
         "headerSubtitle": "Secure and high quality meetings",
         "info": "Dial-in info",
         "join": "CREATE / JOIN",

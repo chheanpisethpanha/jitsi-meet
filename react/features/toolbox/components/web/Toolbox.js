@@ -18,6 +18,7 @@ import {
     IconFeedback,
     IconFullScreen,
     IconInviteMore,
+    IconLanguage,
     IconOpenInNew,
     IconPresentation,
     IconRaisedHand,
@@ -59,7 +60,8 @@ import {
 import { toggleSharedVideo } from '../../../shared-video';
 import { SpeakerStats } from '../../../speaker-stats';
 import {
-    ClosedCaptionButton
+    ClosedCaptionButton,
+    ChangeLanguageDialog
 } from '../../../subtitles';
 import {
     TileViewButton,
@@ -86,6 +88,8 @@ import OverflowMenuButton from './OverflowMenuButton';
 import OverflowMenuProfileItem from './OverflowMenuProfileItem';
 import ToolbarButton from './ToolbarButton';
 import VideoSettingsButton from './VideoSettingsButton';
+
+
 
 /**
  * The type of the React {@code Component} props of {@link Toolbox}.
@@ -249,6 +253,7 @@ class Toolbox extends Component<Props, State> {
         this._onToolbarOpenKeyboardShortcuts = this._onToolbarOpenKeyboardShortcuts.bind(this);
         this._onToolbarOpenSpeakerStats = this._onToolbarOpenSpeakerStats.bind(this);
         this._onToolbarOpenEmbedMeeting = this._onToolbarOpenEmbedMeeting.bind(this);
+        this._onToolbarOpenChangeLanguage = this._onToolbarOpenChangeLanguage.bind(this);
         this._onToolbarOpenVideoQuality = this._onToolbarOpenVideoQuality.bind(this);
         this._onToolbarToggleChat = this._onToolbarToggleChat.bind(this);
         this._onToolbarToggleFullScreen = this._onToolbarToggleFullScreen.bind(this);
@@ -394,8 +399,14 @@ class Toolbox extends Component<Props, State> {
      * @private
      * @returns {void}
      */
+
     _doOpenEmbedMeeting() {
         this.props.dispatch(openDialog(EmbedMeetingDialog));
+    }
+
+
+    _doOpenChangeLanguage() {
+        this.props.dispatch(openDialog(ChangeLanguageDialog));
     }
 
     /**
@@ -757,6 +768,21 @@ class Toolbox extends Component<Props, State> {
         this._doOpenEmbedMeeting();
     }
 
+    _onToolbarOpenChangeLanguage: () => void;
+
+    /**
+     * Creates an analytics toolbar event and dispatches an action for opening
+     * the Change Language modal.
+     *
+     * @private
+     * @returns {void}
+     */
+    _onToolbarOpenChangeLanguage() {
+        sendAnalytics(createToolbarEvent('change.language'));
+
+        this._doOpenChangeLanguage();
+    }
+
     _onToolbarOpenSpeakerStats: () => void;
 
     /**
@@ -990,6 +1016,10 @@ class Toolbox extends Component<Props, State> {
         return !this.props._isVpaasMeeting && this._shouldShowButton('embedmeeting');
     }
 
+    _isChangeLanguageVisible() {
+        return !this.props._isVpaasMeeting && this._shouldShowButton('changelanguage');
+    }
+
     /**
      * Returns true if the profile button is visible and false otherwise.
      *
@@ -1073,6 +1103,13 @@ class Toolbox extends Component<Props, State> {
                     key = 'embed'
                     onClick = { this._onToolbarOpenEmbedMeeting }
                     text = { t('toolbar.embedMeeting') } />,
+            this._isChangeLanguageVisible()
+                && <OverflowMenuItem
+                    accessibilityLabel = { t('toolbar.accessibilityLabel.changeLanguage') }
+                    icon = { IconLanguage }
+                    key = 'change'
+                    onClick = { this._onToolbarOpenChangeLanguage }
+                    text = { t('toolbar.changeLanguage') } />,
             this._shouldShowButton('feedback')
                 && _feedbackConfigured
                 && <OverflowMenuItem
@@ -1153,6 +1190,12 @@ class Toolbox extends Component<Props, State> {
                         key = 'closed-captions'
                         showLabel = { true } />
                 );
+            // case 'changelanguage':
+            //     return (
+            //         <ChangeLanguageDialog
+            //             key = 'change-language'
+            //             showLabel = { true } />
+            //     );
             case 'security':
                 return (
                     <SecurityDialogButton
